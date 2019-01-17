@@ -1,5 +1,34 @@
 <!DOCTYPE html>
 <html>
   <head></head>
-  <body>hello world<script></script></body>
+  <body>hello world
+    <script>
+      var maxNumberOfPlays = 10000;
+      var myChoice = undefined;
+      function print(msg){
+        console.log(msg);
+      }
+      function translate(i) {
+        return ["Rock", "Paper", "Scissors"][i];
+      }
+      var init = () => {
+        <!-- 0:Rock, 1:Paper, 2:Scissors -->
+        var rockPaperScissors = parseInt(Math.random()*3);
+        print("Computer's Choice:", translate(rockPaperScissors));
+      }
+      function calculation() {
+        if (!myChoice) {
+          print("You late!");
+        }
+        else if (rockPaperScissors === myChioce) {
+          print("Draw!");
+        }
+      }
+
+      for (var i=0; i<maxNumberOfPlays; i+=1000) {
+        setTimeout(init, i-990);
+        setTimeout(calculation, i);
+      }
+    </script>
+  </body>
 </html>

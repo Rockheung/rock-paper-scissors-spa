@@ -1,11 +1,14 @@
+var maxNumberOfPlays = 10;
 //초기화 함수 가위,바위,보
 let data;
 //나중에 입력으로 바꿈 현재는 가위로 고정
 let my;
 
+let result = new Array(maxNumberOfPlays);
+
 
 function init () {
-  data = [0,1,2];
+  data = 3;
   my = 0;
   // 0 = 가위
   // 1 = 바위
@@ -16,32 +19,38 @@ function getComputerResult(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
 //나와 컴퓨터의 승패 결정
-function calculate() {
-  let computer = getComputerResult(data.length);
-  let result = {}
-  
+function calculate(i) {
+  result[i] = {};
+  let computer = getComputerResult(data);
+
   if (computer === 0 && my === 0) {
-    result['my'] = '가위'
-    result['computer'] = computer;
-    result['result'] = '비겼습니다.'
+    result[i]['my'] = '가위'
+    result[i]['computer'] = '가위';
+    result[i]['res'] = '비겼습니다.'
   } else if (computer === 1 && my === 0) {
-    result['my'] = '가위'
-    result['computer'] = '바위';
-    result['result'] = '졌습니다..'
+    result[i]['my'] = '가위'
+    result[i]['computer'] = '바위';
+    result[i]['res'] = '졌습니다..'
   } else if (computer === 2 && my === 0) {
-    result['my'] = '가위'
-    result['computer'] = '보';
-    result['result'] = '이겼습니다..'
+    result[i]['my'] = '가위'
+    result[i]['computer'] = '보';
+    result[i]['res'] = '이겼습니다..'
   }
   return result;
 }
 //결과를 출력
-function print(result) {
-  console.log(result.my);
-  console.log(result.computer);
-  console.log(result.result);
+function print(i) {
+  console.log(i);
+  console.log(result);
+  console.log(result[i]["my"]);
+  console.log(result[i]["computer"]);
+  console.log(result[i]["res"]);
 }
 
-init()
-
-print(calculate())
+// init()
+// print(calculate())
+init();
+for (var i=0; i<maxNumberOfPlays; i++) {
+  calculate(i);
+  setTimeout(print.bind(null,i), i*1000);
+}
