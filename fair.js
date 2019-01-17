@@ -1,0 +1,47 @@
+//초기화 함수 가위,바위,보
+let data;
+//나중에 입력으로 바꿈 현재는 가위로 고정
+let my;
+
+
+function init () {
+  data = [0,1,2];
+  my = 0;
+  // 0 = 가위
+  // 1 = 바위
+  //2 = 보
+}
+//컴퓨터의 선택
+function getComputerResult(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+//나와 컴퓨터의 승패 결정
+function calculate() {
+  let computer = getComputerResult(data.length);
+  let result = {}
+  
+  if (computer === 0 && my === 0) {
+    result['my'] = '가위'
+    result['computer'] = computer;
+    result['result'] = '비겼습니다.'
+  } else if (computer === 1 && my === 0) {
+    result['my'] = '가위'
+    result['computer'] = '바위';
+    result['result'] = '졌습니다..'
+  } else if (computer === 2 && my === 0) {
+    result['my'] = '가위'
+    result['computer'] = '보';
+    result['result'] = '이겼습니다..'
+  }
+  return result;
+}
+//결과를 출력
+function print(result) {
+  console.log(result.my);
+  console.log(result.computer);
+  console.log(result.result);
+}
+
+init()
+
+print(calculate())
